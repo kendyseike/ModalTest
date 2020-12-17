@@ -18,6 +18,7 @@
 		557791D0258947D50092362B /* ModalViewInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557791CF258947D50092362B /* ModalViewInitializer.swift */; };
 		557791D5258950670092362B /* ModalCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557791D4258950670092362B /* ModalCustomView.swift */; };
 		557791D825895C910092362B /* ModalProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557791D725895C910092362B /* ModalProtocol.swift */; };
+		557791DC258BBB520092362B /* templateMobileInAppJS.html in Resources */ = {isa = PBXBuildFile; fileRef = 557791DB258BBB520092362B /* templateMobileInAppJS.html */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		557791CF258947D50092362B /* ModalViewInitializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalViewInitializer.swift; sourceTree = "<group>"; };
 		557791D4258950670092362B /* ModalCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalCustomView.swift; sourceTree = "<group>"; };
 		557791D725895C910092362B /* ModalProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalProtocol.swift; sourceTree = "<group>"; };
+		557791DB258BBB520092362B /* templateMobileInAppJS.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = templateMobileInAppJS.html; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 			children = (
 				557791D2258948E70092362B /* Main */,
 				557791C825893C700092362B /* Modal */,
+				557791DB258BBB520092362B /* templateMobileInAppJS.html */,
 				557791B3258936BF0092362B /* AppDelegate.swift */,
 				557791B5258936BF0092362B /* SceneDelegate.swift */,
 				557791B9258936BF0092362B /* Main.storyboard */,
@@ -157,6 +160,7 @@
 			files = (
 				557791C0258936C30092362B /* LaunchScreen.storyboard in Resources */,
 				557791BD258936C30092362B /* Assets.xcassets in Resources */,
+				557791DC258BBB520092362B /* templateMobileInAppJS.html in Resources */,
 				557791BB258936BF0092362B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

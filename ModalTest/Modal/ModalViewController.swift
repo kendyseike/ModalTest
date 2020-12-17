@@ -23,7 +23,7 @@ final class ModalViewController: UIViewController, HasModalView {
         
         guard let model = model else { return }
         
-        let modalCustomView = ModalView(model: model, parent: self.view)
+        let modalCustomView = ModalView(model: model, parent: self)
         
         self.view = modalCustomView
     }

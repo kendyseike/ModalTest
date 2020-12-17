@@ -1,0 +1,163 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+		<style>
+			
+			#overlay{ width: 100%; height: 100%; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0,0,0,0.5); z-index: 2; }
+			
+			.container{ 
+				float:left;
+				width:80%;
+				margin:20% 10%;
+				background-color:white;
+			}
+			
+			.tag-remove::before {
+				content: 'X';
+				color: #fff;
+				font-weight: 300;
+				font-family: Arial, sans-serif;
+			}
+			
+			#close-submit-button {
+				float: right;
+				margin: 3%;
+				width: 25px;
+				height: 25px;
+			}
+			
+			.close-submit-button {
+				height: 25px;
+				width: 2px;
+				margin-left: 12px;
+				background-color: black;
+				transform: rotate(45deg);
+				Z-index: 1;
+			}
+			
+			.close-item-icon {
+				height: 25px;
+				width: 2px;
+				background-color: black;
+				transform: rotate(90deg);
+				Z-index: 2;
+			}
+			
+			#content{
+				position:relative;
+				float:left;
+				clear:both;
+				width:90%;
+				margin:5%;
+				
+				height:400px;
+				background-color: orange;
+			}
+			
+			.button-style{
+				float: left;
+				clear: both;
+				
+				width: 80%;
+				margin: 0 0 5% 5%;
+				padding: 5%;
+				
+				text-align: center;
+				font-family: arial;
+				font-size: 18px;
+				color: white;
+			}
+						
+			/* --- PERSONALIZATION STYLE --- */
+			.content-personalization-dimension-settings{
+				margin: 0px !important;	padding: 0px !important;
+				width: 100% !important; max-width: 100% !
+				
+				important;height: 300px !important;
+				max-height: 300px !important;				
+			}
+
+		</style>
+	
+	</head>
+	<body>
+
+	  <div id="overlay" class="content-dismiss" data-event="OVERLAY">
+			<div class="container">
+				<div id="close-submit-button">
+					<div class="close-submit-button content-dismiss" data-event="CLOSE" data-url="">
+						<div class="close-item-icon"></div>
+					</div>
+				</div>
+				
+				<div id="content"></div>
+				
+				<div class="button-style content-dismiss" data-event="CANCELAR" style="background-color:blue;">CANCELAR</div>
+				<div class="button-style call-to-action" data-event="CONTRATAR" data-Target="IN" data-URL-Android="https://www.itau.com.br" data-URL-iOS="https://www.itau.com.br/cartoes" style="background-color:yellow;">CONTRATAR</div>
+			</div>
+	  </div>
+	
+	</body>	
+	
+	<script>
+		document.addEventListener('DOMContentLoaded', (event) => {
+		
+			var contentDimissClass = document.getElementsByClassName("content-dismiss");
+			var callToActionClass = document.getElementsByClassName("call-to-action");
+			var uniqueEventActivated = false;
+
+			var contentDimissClassActivated = function() {
+				var eventName = this.getAttribute("data-event") ? this.getAttribute("data-event") : "";
+
+    			_analyticsTrack({}, 'CLICK-DISMISS', eventName);	
+			};
+
+			var callToActionClassActivated = function() {
+				var eventName = this.getAttribute("data-event") ? this.getAttribute("data-event") : "";
+				var dataTarget = this.getAttribute("data-Target") ? this.getAttribute("data-Target") : "";
+				var dataURLAndroid = this.getAttribute("data-URL-Android") ? this.getAttribute("data-URL-Android") : "";
+				var dataURLiOS = this.getAttribute("data-URL-iOS") ? this.getAttribute("data-URL-iOS") : "";
+
+				_analyticsTrack({ dataTarget: dataTarget,
+								  dataURLAndroid: dataURLAndroid,
+								  dataURLiOS: dataURLiOS}, 'CALL-TO-ACTION', eventName);	
+			};
+
+			function _analyticsTrack(contextData, eventType, eventName){
+				
+				if(!uniqueEventActivated){
+					
+					objectAnalyticsTrack = {
+						contextData: contextData,
+						eventType: eventType,
+						eventName: eventName
+					};
+				
+					if(typeof H2ONative !== "undefined" && H2ONative !== null) {
+						if(eventType === "CLICK-DISMISS"){
+							H2O-Native.eventDismiss(JSON.stringify(objectAnalyticsTrack));
+						}else if(eventCategory === "CALL-TO-ACTION"){
+							H2O-Native.eventCallToAction(JSON.stringify(objectAnalyticsTrack));
+						}
+					}
+				
+					uniqueEventActivated = true;
+				}
+			}
+
+			for (var i = 0; i < contentDimissClass.length; i++) { 
+				contentDimissClass[i].addEventListener('click', contentDimissClassActivated, false);
+			}
+
+			for (var i = 0; i < callToActionClass.length; i++) {
+    			callToActionClass[i].addEventListener('click', contentDimissClassActivated, false);
+			}
+
+		});
+	</script>
+
+</html>
